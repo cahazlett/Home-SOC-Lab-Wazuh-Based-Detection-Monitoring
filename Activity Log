@@ -1,0 +1,61 @@
+# Activity Log – Day 1
+
+## Objective
+Deploy a local SIEM using Wazuh and establish basic management access.
+
+---
+
+## Work Completed
+
+- Installed Ubuntu Server 22.04 LTS as a KVM virtual machine
+- Configured libvirt / virt-manager for VM management
+- Enabled and validated SSH access to the VM
+- Installed Wazuh all-in-one stack:
+  - Wazuh Manager
+  - Wazuh Indexer (OpenSearch)
+  - Wazuh Dashboard
+- Verified all Wazuh services were running via `systemctl`
+- Accessed the Wazuh dashboard via web browser
+
+---
+
+## Issues Encountered
+
+### Clipboard Not Working in VM Console
+- **Cause:** TTY-based VM console limitations
+- **Resolution:** Switched to SSH-based management
+
+### Dashboard Login Failures
+- **Cause:** Admin credentials not synchronized with OpenSearch security backend
+- **Resolution:** Reset credentials using Wazuh CLI tools
+
+### RBAC / Permission Errors
+- **Cause:** User not mapped to required OpenSearch roles
+- **Resolution:** Corrected role mappings to allow index access
+
+### SSH Access Failing from Laptop
+- **Cause:** VM was using libvirt NAT networking (`192.168.122.0/24`)
+- **Resolution:** Identified need for bridged networking to allow LAN access
+
+### Agent Installed on Manager
+- **Cause:** Confusion between manager and agent roles
+- **Resolution:** Removed agent package and restored manager-only configuration
+
+---
+
+## Current State (End of Day)
+
+- Wazuh SIEM stack installed and operational
+- Dashboard accessible locally
+- RBAC issues resolved
+- SSH access confirmed from host
+- Network still NAT-isolated (planned change)
+
+---
+
+## Lessons Learned
+
+- Many SIEM issues stem from authentication and permissions rather than software bugs
+- Network topology must be validated early
+- SSH access is critical for effective troubleshooting
+- Clear separation of manager and agent roles is essential
