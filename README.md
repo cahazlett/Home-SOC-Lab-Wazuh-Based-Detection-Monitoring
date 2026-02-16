@@ -1,54 +1,58 @@
-# Home Net Secure Monitor
+# Home SOC Lab – Wazuh-Based Detection & Monitoring
 
-A hands-on home SOC lab focused on learning and practicing real-world Security Operations Center (SOC) workflows using open-source security tooling.
+This repository documents the design, build, and operation of a home-based Security Operations lab focused on practical detection engineering and endpoint monitoring using open-source tooling.
 
-This repository documents the **actual build, troubleshooting, and operation** of a local SIEM environment, with an emphasis on endpoint monitoring, alert generation, and investigation rather than theoretical setup guides.
-
----
-
-## Purpose
-
-The goal of this project is to:
-
-- Deploy and operate a local SIEM (Wazuh)
-- Monitor real endpoints on a home network
-- Practice SOC-relevant troubleshooting and analysis
-- Document work in a transparent, version-controlled manner
-- Build practical experience applicable to SOC analyst roles
-
-This is an **ongoing lab**, maintained as a working journal rather than a polished tutorial.
+The lab is treated as a working SOC environment — not a static demo. Changes are version-controlled, problems are documented, and architecture evolves over time.
 
 ---
 
-## What This Repo Contains
+## Objective
 
-- **Overview of the lab architecture and intent**
-- **Daily activity logs** documenting work completed
-- **Issues encountered and how they were resolved**
-- **Evidence and screenshots** (where appropriate)
+Build and operate a functional detection stack that mirrors entry-level SOC workflows:
 
----
+- Deploy and maintain a SIEM platform (Wazuh)
+- Enroll and monitor real endpoints
+- Generate and validate alerts
+- Troubleshoot configuration and connectivity issues
+- Integrate additional telemetry sources (e.g., network IDS)
+- Document decisions and trade-offs transparently
 
-## Current Lab Stack
-
-- **SIEM:** Wazuh (Manager, Indexer, Dashboard)
-- **Platform:** Ubuntu Server 22.04 (KVM / virt-manager)
-- **Monitoring Type:** Endpoint-based telemetry
-- **Endpoints:** Linux (Ubuntu), Windows (planned)
-- **Access:** SSH + Web Dashboard
+This is not a step-by-step tutorial. It is an operational build log.
 
 ---
 
-## Documentation
+## Lab Architecture (Current State)
 
-- [Lab Overview](docs/OVERVIEW.md)
-- [Activity Log – Day 1](docs/activity-log/DAY-01.md)
+**SIEM Platform**
+- Wazuh Manager
+- Wazuh Indexer
+- Wazuh Dashboard
+
+**Primary Host**
+- Ubuntu 24.04 LTS (SurfaceBook 2 dedicated as security node)
+
+**Monitored Endpoints**
+- Ubuntu workstation
+- Windows 11 system
+
+**Detection Expansion**
+- Suricata IDS (AF_PACKET on WiFi interface)
+- ET Open rule set
+- Suricata `eve.json` integrated into Wazuh for centralized analysis
 
 ---
 
-## Status
+## What This Repository Tracks
 
-🚧 Active — Lab is being expanded incrementally with additional endpoints and detection scenarios.
+- Architecture decisions and configuration changes
+- Agent enrollment and troubleshooting
+- Service failures and root-cause resolution
+- Detection-layer expansion (endpoint + network)
+- Activity logs organized chronologically
 
-Updates are added as work is completed.
+The goal is clarity and repeatability — not perfection.
+
+---
+
+## Documentation Structure
 
